@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: slack-api
+  name: slack-api-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: slack-api
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: slack-api
+  name: slack-api-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: slack-api
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: slack-api
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: "80"
+        image: eu.gcr.io/orbiter-279306/orbiter-slack-api:d30d0cdb99e3bca0db9a5845204551450a0fd1bb-orbiter-slack-api-run2-40
+        name: app
+        ports:
+        - containerPort: 80

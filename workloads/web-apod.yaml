@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: web-apod
+  name: web-apod-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: web-apod
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web-apod
+  name: web-apod-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-apod
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: web-apod
+    spec:
+      containers:
+      - env:
+        - name: PORT
+          value: "80"
+        image: eu.gcr.io/orbiter-279306/orgiter-web-apod:d30d0cdb99e3bca0db9a5845204551450a0fd1bb-orgiter-web-apod-run2-54
+        name: app
+        ports:
+        - containerPort: 80
