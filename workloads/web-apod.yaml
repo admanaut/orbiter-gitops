@@ -35,7 +35,7 @@ spec:
       - env:
         - name: PORT
           value: "80"
-        image: eu.gcr.io/orbiter-279306/orgiter-web-apod:aca128cecb11d6ad0c0cf3c2bc8da6ce5dfcfb33-orgiter-web-apod-run2-66
+        image: eu.gcr.io/orbiter-279306/orgiter-web-apod:0dfe7751f1d88c0652a9723c641924aa50ced9b4-orgiter-web-apod-run2-67
         name: app
         ports:
         - containerPort: 80
