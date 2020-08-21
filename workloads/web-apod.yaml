@@ -35,7 +35,7 @@ spec:
       - env:
         - name: PORT
           value: "80"
-        image: eu.gcr.io/orbiter-279306/orbiter-slack-api:cb4a3b944654e9424e4fec60a44ae3aeb969a8ea-orbiter-slack-api-run2-49
+        image: eu.gcr.io/orbiter-279306/orgiter-web-apod:cb4a3b944654e9424e4fec60a44ae3aeb969a8ea-orgiter-web-apod-run2-63
         name: app
         ports:
         - containerPort: 80
